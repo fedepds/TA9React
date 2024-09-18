@@ -1,24 +1,29 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 let Buttons = () => {
   const [count, setCount] = useState(0);
 
   function incrementarClick() {
-    setCount((prevValue)=>prevValue + 1);
+    setCount((prevValue) => prevValue + 1);
   }
+  
   function decrementarClick() {
-    if(count>0){
-      setCount((prevValue)=>prevValue -1);
+    if (count > 0) {
+      setCount((prevValue) => prevValue - 1);
+    } else {
+      setCount(0);
     }
-    else{
-      setCount(0)
-    }
-   
   }
+
   function resetClick() {
     setCount(0);
   }
+
+  
+  useEffect(() => {
+    document.title = `Contador: ${count}`;
+  }, [count]); // Se ejecuta cada vez que 'count' cambia
 
   return (
     <>
